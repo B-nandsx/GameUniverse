@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Universe</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2; /* Nova cor de fundo */
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Para centralizar verticalmente */
+      }
+
+      #brand-logo {
+        margin-right: 10px; /* Adicione um espaçamento à direita da imagem */
+      }
+
+      #brand-logo a {
+        display: flex;
+        align-items: center;
+        text-decoration: none; /* Remover sublinhado padrão do link */
+        color: white; /* Cor do texto do link */
+      }
+
+      #brand-logo img {
+        width: 40px; /* Defina a largura da imagem conforme necessário */
+        height: auto; /* Para manter a proporção da imagem */
+      }
+
+      #carousel {
+        overflow: hidden;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px; /* Adicionei um espaçamento acima do carrossel */
+      }
+
+      #carousel .carousel-item {
+        display: none;
+      }
+
+      #carousel img {
+        width: 50%; /* Ajustei o tamanho das imagens para 60% da largura do contêiner */
+        border-radius: 8px; /* Adicionei bordas arredondadas às imagens */
+        margin: 0 10px; /* Adicionei um espaçamento entre as imagens */
+      }
+
+      #options {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        background-color: #f8f8f8; /* Nova cor de fundo para as opções de escolha */
+        margin-top: 20px; /* Adicionei um espaçamento acima das opções de escolha */
+      }
+
+      .option {
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        margin-top: 20px; /* Adicionei um espaçamento acima do rodapé */
+      }
+
+      h1 {
+        text-align: center; /* Centralizei o título "Comprar jogos" */
+      }
+      .tit {
+        text-align: center;
+        margin-left: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Imagem do logo no lado superior esquerdo -->
+      <div id="brand-logo">
+        <a href="user.html">
+          <img
+            src="https://static.vecteezy.com/ti/vetor-gratis/t2/550980-de-icone-de-usuario-gratis-vetor.jpg"
+            alt="Logo"
+          />
+          <h1 class="tit">Bem-vindo ao Game Universe</h1>
+        </a>
+      </div>
+    </header>
+
+    <section id="carousel">
+      <!-- Carrossel de imagens -->
+      <div class="carousel-item">
+        <img
+          src="https://i.pinimg.com/564x/d4/05/7d/d4057d638417a3e33c39b1a36abdea52.jpg"
+          alt="Imagem 1"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://i.pinimg.com/564x/0a/0e/62/0a0e6269ff44bba15019a78b4a7f558c.jpg"
+          alt="Imagem 2"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://i.pinimg.com/564x/10/6d/cd/106dcd46e259e19d9094ec508ad600a7.jpg"
+          alt="Imagem 3"
+        />
+      </div>
+    </section>
+
+    <h1>Comprar jogos</h1>
+
+    <section id="options">
+      <!-- Opções de escolha -->
+      <div class="option">
+        <a href="corrida.html">Jogos de Corrida</a>
+      </div>
+      <div class="option">
+        <a href="arcade.html">Jogos de Arcade</a>
+      </div>
+      <div class="option">
+        <a href="acao.html">Jogos de Ação</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Game Universe</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Carrossel de imagens
+        const carouselItems = document.querySelectorAll(
+          "#carousel .carousel-item"
+        );
+        let currentSlide = 0;
+
+        function showSlide(index) {
+          carouselItems.forEach((item, i) => {
+            item.style.display = i === index ? "block" : "none";
+          });
+        }
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % carouselItems.length;
+          showSlide(currentSlide);
+        }
+
+        // Iniciar o carrossel
+        showSlide(currentSlide);
+        setInterval(nextSlide, 5000); // Trocar a cada 5 segundos
+      });
+    </script>
+  </body>
+</html>

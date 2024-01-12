@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+      }
+
+      .home-icon {
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      header {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+      }
+
+      #games {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px;
+      }
+
+      .game-card {
+        text-align: center;
+        width: 300px;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .game-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      footer {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      #search-bar {
+        text-align: center;
+        margin: 20px;
+      }
+
+      #search-input {
+        padding: 10px;
+        width: 60%;
+      }
+
+      #search-button {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      #no-matches {
+        text-align: center;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="home-icon" onclick="goHome()">
+        <i class="fas fa-house"></i>
+      </div>
+      <h1>Corrida</h1>
+    </header>
+    <div id="search-bar">
+      <input type="search" id="search-input" placeholder="Pesquisar jogo..." />
+      <button id="search-button" onclick="searchGames()">Pesquisar</button>
+    </div>
+
+    <section id="games" data-searchable="true">
+      <!-- Área para exibir os jogos -->
+    </section>
+
+    <div id="no-matches">
+      <p>Nenhum jogo correspondente encontrado.</p>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Game universe</p>
+    </footer>
+
+    <script>
+      function goHome() {
+        window.location.href = "index.html";
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        const gamesData = [
+          {
+            title: "Gran Turismo Sport",
+            price: 248.28,
+            imageUrl:
+              "https://i.pinimg.com/564x/f6/72/df/f672df1a3f4f3847ee3264ea3c789618.jpg",
+          },
+          {
+            title: "F1 2021",
+            price: 90.99,
+            imageUrl:
+              "https://i.pinimg.com/564x/9e/2b/3a/9e2b3a2194b8cc2429bddb4f1c6157d5.jpg",
+          },
+          {
+            title: "Need for Speed:Healt",
+            price: 40.0,
+            imageUrl:
+              "https://i.pinimg.com/564x/09/7d/ed/097dedf5f44ca4b25335ed6dabda4c62.jpg",
+          },
+          {
+            title: "Dirt Rally 2.0",
+            price: 30.29,
+            imageUrl:
+              "https://i.pinimg.com/564x/b6/07/7e/b6077e70964c26ae286fff702e036ecd.jpg",
+          },
+          {
+            title: "WRC 9",
+            price: 78.8,
+            imageUrl:
+              "https://i.pinimg.com/564x/c8/a0/fe/c8a0fe92a0a86b94ea693e56836e5070.jpg",
+          },
+          {
+            title: "Project CARS 3",
+            price: 65.99,
+            imageUrl:
+              "https://i.pinimg.com/564x/bd/b0/54/bdb054637d332c812f8cebefefa320f4.jpg",
+          },
+          {
+            title: "Crash Team Racing:Nitro-Fueled",
+            price: 79.99,
+            imageUrl:
+              "https://i.pinimg.com/564x/5a/88/db/5a88db777eb8116d41528239a9a8fcfc.jpg",
+          },
+        ];
+
+        const gamesContainer = document.getElementById("games");
+
+        gamesData.forEach((game, index) => {
+          const gameCard = createGameCard(game, index);
+          gamesContainer.appendChild(gameCard);
+        });
+
+        function createGameCard(game, index) {
+          const gameCard = document.createElement("div");
+          gameCard.classList.add("game-card");
+
+          const gameImage = document.createElement("img");
+          gameImage.src = game.imageUrl;
+          gameImage.alt = game.title;
+
+          const gameTitle = document.createElement("h3");
+          gameTitle.textContent = game.title;
+
+          const gamePrice = document.createElement("p");
+          gamePrice.textContent = `Preço: $${game.price}`;
+
+          const buyButton = document.createElement("button");
+          buyButton.textContent = "Comprar";
+          buyButton.addEventListener("click", function () {
+            buyGame(game.title);
+          });
+
+          gameCard.appendChild(gameImage);
+          gameCard.appendChild(gameTitle);
+          gameCard.appendChild(gamePrice);
+          gameCard.appendChild(buyButton);
+
+          return gameCard;
+        }
+
+        function buyGame(title) {
+          switch (title) {
+            case "Gran Turismo Sport":
+              window.location.href = "corrida1.html";
+              break;
+            case "F1 2021":
+              window.location.href = "corrida2.html";
+              break;
+            case "Need for Speed:Healt":
+              window.location.href = "corrida3.html";
+              break;
+            case "Dirt Rally 2.0":
+              window.location.href = "corrida4.html";
+              break;
+            case "WRC 9":
+              window.location.href = "corrida5.html";
+              break;
+            case "Project CARS 3":
+              window.location.href = "corrida6.html";
+              break;
+            case "Crash Team Racing:Nitro-Fueled":
+              window.location.href = "corrida7.html";
+              break;
+            default:
+              alert(`Você comprou o jogo: ${title}`);
+              break;
+          }
+        }
+        function searchGames() {
+          const searchTerm = document
+            .getElementById("search-input")
+            .value.toLowerCase();
+          const games = gamesContainer.getElementsByClassName("game-card");
+
+          for (const game of games) {
+            const gameTitle = game
+              .querySelector("h3")
+              .textContent.toLowerCase();
+            const isMatch = gameTitle.includes(searchTerm);
+
+            game.style.display = isMatch ? "flex" : "none";
+          }
+
+          const noMatchesMessage = document.getElementById("no-matches");
+          const anyMatches = Array.from(games).some(
+            (game) => game.style.display === "flex"
+          );
+
+          noMatchesMessage.style.display = anyMatches ? "none" : "block";
+        }
+      });
+    </script>
+    <script
+      src="https://kit.fontawesome.com/9e2a19248f.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

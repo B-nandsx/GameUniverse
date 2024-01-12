@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Game Universe</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+      }
+
+      .home-icon {
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      header {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+      }
+
+      #games {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px;
+      }
+
+      .game-card {
+        text-align: center;
+        width: 300px;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .game-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      footer {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      #search-bar {
+        text-align: center;
+        margin: 20px;
+      }
+
+      #search-input {
+        padding: 10px;
+        width: 60%;
+      }
+
+      #search-button {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      #no-matches {
+        text-align: center;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="home-icon" onclick="goHome()">
+        <i class="fas fa-house"></i>
+      </div>
+      <h1>Arcade</h1>
+    </header>
+    <div id="search-bar">
+      <input type="search" id="search-input" placeholder="Pesquisar jogo..." />
+      <button id="search-button" onclick="searchGames()">Pesquisar</button>
+    </div>
+
+    <section id="games" data-searchable="true">
+      <!-- Área para exibir os jogos -->
+    </section>
+
+    <div id="no-matches">
+      <p>Nenhum jogo correspondente encontrado.</p>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Game universe</p>
+    </footer>
+    <script>
+      function goHome() {
+        window.location.href = "index.html"; // Substitua "index.html" pelo caminho da sua página inicial
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        const gamesData = [
+          {
+            title: "Pac-Man",
+            price: 59.28,
+            imageUrl:
+              "https://i.pinimg.com/564x/f5/6f/43/f56f43db5e3ecfdf7a54dd748780ead8.jpg",
+          },
+          {
+            title: "hollow knight",
+            price: 59.28,
+            imageUrl:
+              "https://i.pinimg.com/564x/bc/98/48/bc9848355da9a392a2f696a701b41811.jpg",
+          },
+          {
+            title: "Street Fighter II",
+            price: 179.92,
+            imageUrl:
+              "https://i.pinimg.com/564x/88/4d/82/884d82a90a34e5f0e530ff061d1da2e2.jpg",
+          },
+          {
+            title: "Mortal Kombat",
+            price: 30.29,
+            imageUrl:
+              "https://i.pinimg.com/564x/dd/35/f0/dd35f0e265710bc108437a34b52475a1.jpg",
+          },
+          {
+            title: "Metal Slug",
+            price: 78.8,
+            imageUrl:
+              "https://i.pinimg.com/564x/29/84/43/29844304ebec064d4642fa9e86ba26f0.jpg",
+          },
+          {
+            title: "Tekken",
+            price: 65.99,
+            imageUrl:
+              "https://i.pinimg.com/564x/3d/02/1b/3d021bcf68889d8eb2641ce0ee1fac13.jpg",
+          },
+          {
+            title: "Sonic the Hedgehog",
+            price: 79.99,
+            imageUrl:
+              "https://i.pinimg.com/564x/70/51/f5/7051f5e173fc2aa6388ee9610d12877d.jpg",
+          },
+        ];
+
+        const gamesContainer = document.getElementById("games");
+
+        gamesData.forEach((game, index) => {
+          const gameCard = createGameCard(game, index);
+          gamesContainer.appendChild(gameCard);
+        });
+
+        function createGameCard(game, index) {
+          const gameCard = document.createElement("div");
+          gameCard.classList.add("game-card");
+
+          const gameImage = document.createElement("img");
+          gameImage.src = game.imageUrl;
+          gameImage.alt = game.title;
+
+          const gameTitle = document.createElement("h3");
+          gameTitle.textContent = game.title;
+
+          const gamePrice = document.createElement("p");
+          gamePrice.textContent = `Preço: $${game.price}`;
+
+          const buyButton = document.createElement("button");
+          buyButton.textContent = "Comprar";
+          buyButton.addEventListener("click", function () {
+            buyGame(game.title);
+          });
+
+          gameCard.appendChild(gameImage);
+          gameCard.appendChild(gameTitle);
+          gameCard.appendChild(gamePrice);
+          gameCard.appendChild(buyButton);
+
+          return gameCard;
+        }
+
+        function buyGame(title) {
+          switch (title) {
+            case "Pac-Man":
+              window.location.href = "arcade1.html";
+              break;
+            case "hollow knight":
+              window.location.href = "arcade2.html";
+              break;
+            case "Street Fighter II":
+              window.location.href = "arcade3.html";
+              break;
+            case "Mortal Kombat":
+              window.location.href = "arcade4.html";
+              break;
+            case "Metal Slug":
+              window.location.href = "arcade5.html";
+              break;
+            case "Tekken":
+              window.location.href = "arcade6.html";
+              break;
+            case "Sonic the Hedgehog":
+              window.location.href = "arcade7.html";
+              break;
+            default:
+              alert(`Você comprou o jogo: ${title}`);
+              break;
+          }
+        }
+
+        function searchGames() {
+          const searchTerm = document
+            .getElementById("search-input")
+            .value.toLowerCase();
+          const games = gamesContainer.getElementsByClassName("game-card");
+          let foundMatches = false;
+
+          for (const game of games) {
+            const gameTitle = game
+              .querySelector("h3")
+              .textContent.toLowerCase();
+            const isMatch = gameTitle.includes(searchTerm);
+
+            if (isMatch) {
+              game.style.display = "block";
+              foundMatches = true;
+            } else {
+              game.style.display = "none";
+            }
+          }
+
+          const noMatchesMessage = document.getElementById("no-matches");
+          if (foundMatches) {
+            noMatchesMessage.style.display = "none";
+          } else {
+            noMatchesMessage.style.display = "block";
+          }
+        }
+      });
+    </script>
+    <script
+      src="https://kit.fontawesome.com/9e2a19248f.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Universe</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+      }
+
+      header {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        position: relative;
+      }
+
+      .home-icon {
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      #product-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+        margin: 70px auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #product-card img {
+        width: 50%;
+        height: auto;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      #product-details {
+        flex-grow: 1;
+        text-align: left;
+      }
+
+      footer {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+
+      #add-to-cart {
+        margin-top: 10px;
+        background-color: #333c63;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #add-review {
+        margin-top: 10px;
+        background-color: #333c63;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(111, 147, 212);
+        padding: 70px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #popup-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      #continue-shopping,
+      #checkout {
+        background-color: #333c63;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #review-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      #reviews-list-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      #review-text {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      #reviewer-name {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      #submit-review,
+      #close-review-popup,
+      #view-reviews,
+      #close-reviews-list-popup {
+        background-color: #333c63;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      #reviews-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .fa-star {
+        font-size: 24px;
+        color: #ddd;
+        cursor: pointer;
+      }
+
+      .fa-star.rated {
+        color: #f8d64e;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="home-icon" onclick="goHome()">
+        <i class="fa-solid fa-house"></i>
+      </div>
+      <h1>Street Fighter II</h1>
+    </header>
+
+    <div id="product-card">
+      <img
+        src="https://i.pinimg.com/564x/88/4d/82/884d82a90a34e5f0e530ff061d1da2e2.jpg"
+        alt="Produto disponível"
+      />
+      <div id="product-details">
+        <h2>PStreet Fighter II PS2</h2>
+        <p>Preço: $179.92</p>
+        <p>
+          <strong>Descrição do produto: </strong><br /><br />
+          também conhecido simplesmente por Street Fighter II, é um jogo
+          competitivo de videogame desenvolvido pela Capcom e originalmente
+          lançado para os sistemas de Arcade em 1991. É o segundo jogo da série
+          Street Fighter e a sequência de Street Fighter, jogo lançado em 1987.
+          Trata-se do décimo quarto título da Capcom a utilizar a placa de
+          sistema de Arcade CP System. Street Fighter II melhorou vários dos
+          conceitos introduzidos no primeiro jogo, incluindo o uso de golpes
+          especiais baseados em comandos e uma configuração de Joystick com seis
+          botões, enquanto ofereceu aos jogadores uma seleção maior de
+          personagens jogáveis, cada um com seu próprio estilo de luta, e
+          introduziu o sistema de Combos.
+        </p>
+        <button id="add-to-cart" onclick="showPopup()">
+          Adicionar ao Carrinho 🛒
+        </button>
+        <button id="add-review" onclick="showReviewPopup()">
+          Adicionar Avaliação 🌟
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Game universe</p>
+    </footer>
+
+    <div id="popup">
+      <h1>Produto adicionado ao carrinho!</h1>
+      <div id="popup-buttons">
+        <button id="continue-shopping" onclick="continueShopping()">
+          Continuar Comprando
+        </button>
+        <button id="checkout" onclick="checkout()">Finalizar Compra</button>
+      </div>
+    </div>
+
+    <div id="review-popup">
+      <h2>Adicionar Avaliação</h2>
+      <div>
+        <p>Classificação:</p>
+        <div class="rating" id="star-rating">
+          <i class="fas fa-star" data-rating="1" onclick="setRating(1)"></i>
+          <i class="fas fa-star" data-rating="2" onclick="setRating(2)"></i>
+          <i class="fas fa-star" data-rating="3" onclick="setRating(3)"></i>
+          <i class="fas fa-star" data-rating="4" onclick="setRating(4)"></i>
+          <i class="fas fa-star" data-rating="5" onclick="setRating(5)"></i>
+        </div>
+      </div>
+      <input type="text" id="reviewer-name" placeholder="Seu Nome" />
+      <textarea
+        id="review-text"
+        rows="4"
+        cols="50"
+        placeholder="Escreva sua avaliação..."
+      ></textarea>
+      <br />
+      <button id="submit-review" onclick="submitReview()">
+        Enviar Avaliação
+      </button>
+      <button id="close-review-popup" onclick="hideReviewPopup()">
+        Fechar
+      </button>
+      <button id="view-reviews" onclick="viewReviews()">
+        Ver Avaliações Anteriores
+      </button>
+    </div>
+
+    <div id="reviews-list-popup">
+      <h2>Avaliações Anteriores</h2>
+      <ul id="reviews-list"></ul>
+      <button id="close-reviews-list-popup" onclick="hideReviewsListPopup()">
+        Fechar
+      </button>
+    </div>
+
+    <script>
+      var reviews = []; // Array para armazenar as avaliações
+      var currentRating = 0;
+
+      function setRating(rating) {
+        currentRating = rating;
+
+        // Atualiza a aparência das estrelas
+        for (var i = 1; i <= 5; i++) {
+          var star = document.querySelector(
+            `#star-rating [data-rating="${i}"]`
+          );
+          if (i <= rating) {
+            star.classList.add("rated");
+          } else {
+            star.classList.remove("rated");
+          }
+        }
+      }
+
+      function showPopup() {
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      function goHome() {
+        window.location.href = "index.html";
+      }
+
+      function continueShopping() {
+        window.location.href = "index.html";
+      }
+
+      function checkout() {
+        var productName = document.querySelector(
+          "#product-details h2"
+        ).innerText;
+        var productPrice =
+          document.querySelector("#product-details p").innerText;
+
+        alert(
+          "Compra Finalizada!\n\nVocê comprou:\n" +
+            productName +
+            "\nPreço: " +
+            productPrice
+        );
+
+        hidePopup();
+      }
+
+      function showReviewPopup() {
+        document.getElementById("review-popup").style.display = "block";
+      }
+
+      function hideReviewPopup() {
+        document.getElementById("review-popup").style.display = "none";
+      }
+
+      function viewReviews() {
+        document.getElementById("reviews-list-popup").style.display = "block";
+
+        var reviewsList = document.getElementById("reviews-list");
+        reviewsList.innerHTML = "";
+
+        for (var i = 0; i < reviews.length; i++) {
+          var listItem = document.createElement("li");
+
+          // Adiciona a classificação (estrelas) ao texto da avaliação
+          var ratingStars = "\u2605".repeat(reviews[i].rating);
+          listItem.textContent =
+            reviews[i].name + " (" + ratingStars + "): " + reviews[i].text;
+          reviewsList.appendChild(listItem);
+        }
+      }
+
+      function hideReviewPopup() {
+        document.getElementById("review-popup").style.display = "none";
+
+        // Limpar campos após fechar o popup
+        document.getElementById("reviewer-name").value = "";
+        document.getElementById("review-text").value = "";
+        setRating(0); // Limpar a classificação
+      }
+
+      function hideReviewsListPopup() {
+        document.getElementById("reviews-list-popup").style.display = "none";
+      }
+
+      function submitReview() {
+        var reviewerName = document.getElementById("reviewer-name").value;
+        var reviewText = document.getElementById("review-text").value;
+
+        reviews.push({
+          name: reviewerName,
+          text: reviewText,
+          rating: currentRating,
+        });
+
+        alert(
+          "Avaliação enviada por " +
+            reviewerName +
+            ":\n" +
+            reviewText +
+            "\nClassificação: " +
+            currentRating
+        );
+
+        hideReviewPopup();
+      }
+    </script>
+
+    <script
+      src="https://kit.fontawesome.com/9e2a19248f.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

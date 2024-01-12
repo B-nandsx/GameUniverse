@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página do Usuário</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+      }
+
+      .home-icon {
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      header {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .user-info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+      }
+
+      .user-info {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .user-info label,
+      .user-info input {
+        margin-bottom: 10px; /* Adicione este espaçamento entre os campos */
+      }
+
+      .purchase-history {
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .purchase-history table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      .purchase-history th,
+      .purchase-history td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      .purchase-history th {
+        background-color: #333;
+        color: white;
+      }
+
+      button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="home-icon" onclick="goHome()">
+        <i class="fa-solid fa-house"></i>
+      </div>
+      <h1>Minhas informações</h1>
+    </header>
+
+    <div class="user-info-container">
+      <div class="user-info">
+        <label for="email">Email:</label>
+        <input type="email" id="email" value="usuario@email.com" disabled />
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" value="senha123" disabled />
+
+        <label for="name">Nome:</label>
+        <input type="text" id="name" value="Nome do Usuário" disabled />
+
+        <button onclick="enableEdit()">Editar Informações</button>
+        <button onclick="saveChanges()">Salvar Alterações</button>
+      </div>
+
+      <div class="purchase-history">
+        <h2>Histórico de Compras</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+            </tr>
+            <!-- Adicione mais linhas conforme necessário -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function goHome() {
+        window.location.href = "index.html"; // Substitua "index.html" pelo caminho da sua página inicial
+      }
+
+      function enableEdit() {
+        document.getElementById("email").removeAttribute("disabled");
+        document.getElementById("password").removeAttribute("disabled");
+        document.getElementById("name").removeAttribute("disabled");
+      }
+
+      function saveChanges() {
+        var newEmail = document.getElementById("email").value;
+        var newPassword = document.getElementById("password").value;
+        var newName = document.getElementById("name").value;
+
+        // Aqui você pode enviar as informações para o servidor para salvar no banco de dados.
+        // Este é apenas um exemplo de console.log, em uma aplicação real, você precisaria
+        // de uma lógica de backend para manipular as alterações.
+
+        console.log("Novo Email: " + newEmail);
+        console.log("Nova Senha: " + newPassword);
+        console.log("Novo Nome: " + newName);
+
+        // Desabilita os campos novamente após salvar as alterações
+        document.getElementById("email").setAttribute("disabled", "true");
+        document.getElementById("password").setAttribute("disabled", "true");
+        document.getElementById("name").setAttribute("disabled", "true");
+      }
+    </script>
+    <script
+      src="https://kit.fontawesome.com/9e2a19248f.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
